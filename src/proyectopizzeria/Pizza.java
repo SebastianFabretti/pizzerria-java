@@ -12,6 +12,12 @@ public class Pizza {
         this.cantidad = cantidad;
     }
 
+    public Pizza(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

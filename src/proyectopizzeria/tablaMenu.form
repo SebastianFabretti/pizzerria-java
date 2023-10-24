@@ -47,9 +47,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" min="-2" pref="307" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -57,6 +56,7 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jPanel1" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -65,32 +65,43 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="66" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="botonMuzzarella" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="botonVegana" alignment="0" pref="103" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="botonNapolitana" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                      <Component id="botonFugazzetta" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="botonEspecial" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="botonAnchoas" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="botonMuzzarella" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="botonVegana" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="botonNapolitana" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="botonFugazzetta" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="botonEspecial" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelMuzzarella" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNapolitana" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelFugazzetta" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelEspecial" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelVegana" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelAnchoas" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,26 +109,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelMuzzarella" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="botonMuzzarella" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNapolitana" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botonNapolitana" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelFugazzetta" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="botonFugazzetta" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelEspecial" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="botonEspecial" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelVegana" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="botonVegana" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="825" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelAnchoas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="botonAnchoas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="771" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -126,6 +141,9 @@
         <Component class="javax.swing.JButton" name="botonMuzzarella">
           <Properties>
             <Property name="text" type="java.lang.String" value="Muzzarella"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 10, 5, 10]"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[896, 800]"/>
             </Property>
@@ -143,6 +161,9 @@
         <Component class="javax.swing.JButton" name="botonFugazzetta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fugazzetta"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 10, 5, 10]"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFugazzettaActionPerformed"/>
@@ -151,6 +172,9 @@
         <Component class="javax.swing.JButton" name="botonEspecial">
           <Properties>
             <Property name="text" type="java.lang.String" value="Especial"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 10, 5, 10]"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEspecialActionPerformed"/>
@@ -159,29 +183,38 @@
         <Component class="javax.swing.JButton" name="botonVegana">
           <Properties>
             <Property name="text" type="java.lang.String" value="Vegana"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 10, 5, 10]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[80, 24]"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonVeganaActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="labelMuzzarella">
           <Properties>
             <Property name="text" type="java.lang.String" value="Muzzarella"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="labelNapolitana">
           <Properties>
             <Property name="text" type="java.lang.String" value="Napolitana"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="labelFugazzetta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fugazzetta"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="labelEspecial">
           <Properties>
             <Property name="text" type="java.lang.String" value="Especial"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
+        <Component class="javax.swing.JLabel" name="labelVegana">
           <Properties>
             <Property name="text" type="java.lang.String" value="Vegana"/>
           </Properties>
@@ -189,9 +222,28 @@
         <Component class="javax.swing.JButton" name="botonNapolitana">
           <Properties>
             <Property name="text" type="java.lang.String" value="Napolitana"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 10, 5, 10]"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonNapolitanaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelAnchoas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Anchoas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonAnchoas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Anchoas"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[5, 10, 5, 10]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAnchoasActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
