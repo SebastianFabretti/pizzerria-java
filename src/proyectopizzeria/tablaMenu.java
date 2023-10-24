@@ -44,11 +44,11 @@ public class tablaMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        boton3 = new javax.swing.JButton();
+        labelLabelTotal = new javax.swing.JLabel();
+        labelTotal = new javax.swing.JLabel();
+        botonPagar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTotal = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -195,28 +195,28 @@ public class tablaMenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Total:");
+        labelLabelTotal.setText("Total:");
 
-        jLabel2.setText("$ 0");
+        labelTotal.setText("$ 0");
 
-        jButton6.setText("Pagar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        botonPagar.setText("Pagar");
+        botonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                botonPagarActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Cancelar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                botonModificarActionPerformed(evt);
             }
         });
 
-        boton3.setText("Modificar");
-        boton3.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton3ActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
 
@@ -236,18 +236,18 @@ public class tablaMenu extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(boton3)
+                    .addComponent(botonModificar)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                            .addComponent(labelLabelTotal)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2))
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelTotal))
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -258,15 +258,15 @@ public class tablaMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(labelLabelTotal)
+                            .addComponent(labelTotal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton8)
+                                .addComponent(botonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boton3))
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(botonModificar))
+                            .addComponent(botonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -327,6 +327,8 @@ public class tablaMenu extends javax.swing.JFrame {
         int precio = 20;
         String pizza = "Muzzarella";
         boolean existe = false;
+        
+        
 
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
 
@@ -344,12 +346,13 @@ public class tablaMenu extends javax.swing.JFrame {
         if (!existe) {
             modelo.addRow(new Object[]{pizza, precio, 1});
         }
-
+        
+        calcularTotal();
     }//GEN-LAST:event_botonMuzzarellaActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void botonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_botonPagarActionPerformed
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
         // TODO add your handling code here:
@@ -373,6 +376,8 @@ public class tablaMenu extends javax.swing.JFrame {
         if (!existe) {
             modelo.addRow(new Object[]{pizza, precio, 1});
         }
+        
+        calcularTotal();
     }//GEN-LAST:event_botonNapolitanaActionPerformed
 
     private void botonFugazzettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFugazzettaActionPerformed
@@ -397,6 +402,8 @@ public class tablaMenu extends javax.swing.JFrame {
         if (!existe) {
             modelo.addRow(new Object[]{pizza, precio, 1});
         }
+        
+        calcularTotal();
     }//GEN-LAST:event_botonFugazzettaActionPerformed
 
     private void botonEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEspecialActionPerformed
@@ -421,15 +428,17 @@ public class tablaMenu extends javax.swing.JFrame {
         if (!existe) {
             modelo.addRow(new Object[]{pizza, precio, 1});
         }
+        
+        calcularTotal();
     }//GEN-LAST:event_botonEspecialActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boton3ActionPerformed
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
         // TODO add your handling code here:
@@ -453,6 +462,8 @@ public class tablaMenu extends javax.swing.JFrame {
         if (!existe) {
             modelo.addRow(new Object[]{pizza, precio, 1});
         }
+        
+        calcularTotal();
     }//GEN-LAST:event_botonVeganaActionPerformed
 
     private void botonAnchoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnchoasActionPerformed
@@ -477,7 +488,21 @@ public class tablaMenu extends javax.swing.JFrame {
         if (!existe) {
             modelo.addRow(new Object[]{pizza, precio, 1});
         }
+        
+        calcularTotal();
     }//GEN-LAST:event_botonAnchoasActionPerformed
+
+    public void calcularTotal() {
+        int total = 0;
+        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
+        
+        int rows = modelo.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            total +=  (int) modelo.getValueAt(i, 1) * (int) modelo.getValueAt(i, 2);
+        }
+        
+        labelTotal.setText("$" + total);
+    }
 
     /**
      * @param args the command line arguments
@@ -642,17 +667,15 @@ public class tablaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton boton3;
     private javax.swing.JButton botonAnchoas;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonEspecial;
     private javax.swing.JButton botonFugazzetta;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMuzzarella;
     private javax.swing.JButton botonNapolitana;
+    private javax.swing.JButton botonPagar;
     private javax.swing.JButton botonVegana;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -663,8 +686,10 @@ public class tablaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel labelAnchoas;
     private javax.swing.JLabel labelEspecial;
     private javax.swing.JLabel labelFugazzetta;
+    private javax.swing.JLabel labelLabelTotal;
     private javax.swing.JLabel labelMuzzarella;
     private javax.swing.JLabel labelNapolitana;
+    private javax.swing.JLabel labelTotal;
     private javax.swing.JLabel labelVegana;
     private javax.swing.JTable tablaTotal;
     // End of variables declaration//GEN-END:variables
