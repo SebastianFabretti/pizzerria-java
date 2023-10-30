@@ -6,10 +6,8 @@ public class Pizza {
     private int precio;
     private int cantidad;
 
-    public Pizza(String nombre, int precio, int cantidad) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantidad = cantidad;
+    public Pizza() {
+        
     }
 
     public Pizza(int cantidad) {

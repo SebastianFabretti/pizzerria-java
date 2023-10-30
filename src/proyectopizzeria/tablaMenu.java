@@ -345,26 +345,11 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonMuzzarellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMuzzarellaActionPerformed
         // TODO add your handling code here:
-        int precio = 20;
-        String pizza = "Muzzarella";
-        boolean existe = false;
-
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza)) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza, precio, 1});
-        }
+        Pizza pizza = new Pizza();
+        pizza.setPrecio(20);
+        pizza.setNombre("Muzzarella");
+        
+        sumarPizza(pizza);
 
         calcularTotal();
     }//GEN-LAST:event_botonMuzzarellaActionPerformed
@@ -375,78 +360,34 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
         // TODO add your handling code here:
-        int precio = 30;
-        String pizza = "Napolitana";
-        boolean existe = false;
-
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza)) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza, precio, 1});
-        }
+        Pizza pizza = new Pizza();
+        pizza.setPrecio(30);
+        pizza.setNombre("Napolitana");
+        
+        sumarPizza(pizza);
 
         calcularTotal();
     }//GEN-LAST:event_botonNapolitanaActionPerformed
 
     private void botonFugazzettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFugazzettaActionPerformed
         // TODO add your handling code here:
-        int precio = 20;
-        String pizza = "Fugazzetta";
-        boolean existe = false;
 
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
+        Pizza pizza = new Pizza();
+        pizza.setNombre("Fugazzetta");
+        pizza.setPrecio(20);
 
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza)) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza, precio, 1});
-        }
+        sumarPizza(pizza);
 
         calcularTotal();
     }//GEN-LAST:event_botonFugazzettaActionPerformed
 
     private void botonEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEspecialActionPerformed
         // TODO add your handling code here:
-        int precio = 40;
-        String pizza = "Especial";
-        boolean existe = false;
+        Pizza pizza = new Pizza();
+        pizza.setNombre("Especial");
+        pizza.setPrecio(40);
 
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza)) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza, precio, 1});
-        }
+        sumarPizza(pizza);
 
         calcularTotal();
     }//GEN-LAST:event_botonEspecialActionPerformed
@@ -482,52 +423,22 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
         // TODO add your handling code here:
-        int precio = 70;
-        String pizza = "Vegana";
-        boolean existe = false;
+        Pizza pizza = new Pizza();
+        pizza.setNombre("Vegana");
+        pizza.setPrecio(70);
 
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza)) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza, precio, 1});
-        }
+        sumarPizza(pizza);
 
         calcularTotal();
     }//GEN-LAST:event_botonVeganaActionPerformed
 
     private void botonAnchoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnchoasActionPerformed
         // TODO add your handling code here:
-        int precio = 50;
-        String pizza = "Anchoas";
-        boolean existe = false;
+        Pizza pizza = new Pizza();
+        pizza.setNombre("Anchoas");
+        pizza.setPrecio(50);
 
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza)) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza, precio, 1});
-        }
+        sumarPizza(pizza);
 
         calcularTotal();
     }//GEN-LAST:event_botonAnchoasActionPerformed
@@ -537,7 +448,7 @@ public class tablaMenu extends javax.swing.JFrame {
         calcularTotal();
     }//GEN-LAST:event_tablaTotalPropertyChange
 
-    public void calcularTotal() {
+    private void calcularTotal() {
         int total = 0;
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
 
@@ -547,6 +458,28 @@ public class tablaMenu extends javax.swing.JFrame {
         }
 
         labelTotal.setText("$" + total);
+    }
+
+    private void sumarPizza(Pizza pizza) {
+        boolean existe = false;
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
+
+        int rows = modelo.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            if (modelo.getValueAt(i, 0).equals(pizza.getNombre())) {
+                int cantidad = (int) modelo.getValueAt(i, 2);
+                cantidad++;
+                modelo.setValueAt(cantidad, i, 2);
+                existe = true;
+                break;
+            }
+        }
+
+        if (!existe) {
+            modelo.addRow(new Object[]{pizza.getNombre(), pizza.getPrecio(), 1});
+        }
+
     }
 
     /**
