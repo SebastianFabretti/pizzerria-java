@@ -348,7 +348,7 @@ public class tablaMenu extends javax.swing.JFrame {
         Pizza pizza = new Pizza();
         pizza.setPrecio(20);
         pizza.setNombre("Muzzarella");
-        
+
         sumarPizza(pizza);
 
         calcularTotal();
@@ -356,6 +356,8 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagarActionPerformed
         // TODO add your handling code here:
+
+
     }//GEN-LAST:event_botonPagarActionPerformed
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
@@ -363,7 +365,7 @@ public class tablaMenu extends javax.swing.JFrame {
         Pizza pizza = new Pizza();
         pizza.setPrecio(30);
         pizza.setNombre("Napolitana");
-        
+
         sumarPizza(pizza);
 
         calcularTotal();
@@ -447,6 +449,8 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         calcularTotal();
     }//GEN-LAST:event_tablaTotalPropertyChange
+
+   
 
     private void calcularTotal() {
         int total = 0;

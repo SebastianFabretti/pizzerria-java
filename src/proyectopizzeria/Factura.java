@@ -1,19 +1,28 @@
 package proyectopizzeria;
 
-import java.util.Date;
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Factura {
+@Entity
+@Table(name="facturas")
+public class Factura implements Serializable {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int id;
-    private Date fecha;
+    @Column(name="Total")
     private int total;
+    @Column(name="Fecha")
+    private String fecha;
+    @Column(name="Resumen")
     private Pizza[] pizza;
 
-    public Factura(int id, Date fecha, int total, Pizza[] pizza) {
-        this.id = id;
-        this.fecha = fecha;
-        this.total = total;
-        this.pizza = pizza;
-    }
+    public Factura() { }
 
     public int getId() {
         return id;
@@ -23,11 +32,11 @@ public class Factura {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -46,6 +55,5 @@ public class Factura {
     public void setPizza(Pizza[] pizza) {
         this.pizza = pizza;
     }
-    
-    
+
 }
