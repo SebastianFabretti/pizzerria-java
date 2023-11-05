@@ -4,7 +4,7 @@
  */
 package proyectopizzeria;
 
-
+import com.itextpdf.text.DocumentException;
 import java.util.ArrayList;
 import java.util.Date;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -52,7 +52,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelLabelTotal = new javax.swing.JLabel();
         labelTotal = new javax.swing.JLabel();
         botonPagar = new javax.swing.JButton();
-        botonModificar = new javax.swing.JButton();
+        botonDescontar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTotal = new javax.swing.JTable();
@@ -213,10 +213,10 @@ public class tablaMenu extends javax.swing.JFrame {
             }
         });
 
-        botonModificar.setText("Descontar");
-        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+        botonDescontar.setText("Descontar");
+        botonDescontar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModificarActionPerformed(evt);
+                botonDescontarActionPerformed(evt);
             }
         });
 
@@ -261,7 +261,7 @@ public class tablaMenu extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                            .addComponent(botonDescontar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -281,7 +281,7 @@ public class tablaMenu extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(botonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonModificar))
+                                .addComponent(botonDescontar))
                             .addComponent(botonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -351,10 +351,15 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagarActionPerformed
         // TODO add your handling code here:
-        Factura factura = procesarFactura();
-        guardarFacturaDB(factura);
-        
-        borrarPedido();
+        if (validateFactura()) {
+            Factura factura = procesarFactura();
+            guardarFacturaDB(factura);
+            generarPDF();
+            borrarPedido();
+        } else {
+            showMessageDialog(null, "ERROR: factura sin productos");
+        }
+
     }//GEN-LAST:event_botonPagarActionPerformed
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
@@ -396,18 +401,15 @@ public class tablaMenu extends javax.swing.JFrame {
         borrarPedido();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+    private void botonDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescontarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         int selectedRow = tablaTotal.getSelectedRow();
 
         if (selectedRow >= 0) {
             int currentQuantity = Integer.parseInt(modelo.getValueAt(selectedRow, 2).toString());
-            System.out.println(currentQuantity);
-
             if (currentQuantity > 1) {
                 currentQuantity--;
-                System.out.println(currentQuantity);
                 modelo.setValueAt(currentQuantity, selectedRow, 2);
             } else {
                 modelo.removeRow(selectedRow);
@@ -415,7 +417,7 @@ public class tablaMenu extends javax.swing.JFrame {
         }
 
         calcularTotal();
-    }//GEN-LAST:event_botonModificarActionPerformed
+    }//GEN-LAST:event_botonDescontarActionPerformed
 
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
         // TODO add your handling code here:
@@ -443,6 +445,17 @@ public class tablaMenu extends javax.swing.JFrame {
         Factura factura = new Factura();
         int total = calcularTotal();
         Date fecha = new Date();
+        ArrayList<Pizza> resumen = generarResumen();
+
+        factura.setFecha(fecha);
+        factura.setTotal(total);
+        factura.setResumen(resumen.toString().replace(",", "|"));
+        System.out.println(factura.getResumen());
+
+        return factura;
+    }
+
+    private ArrayList<Pizza> generarResumen() {
         ArrayList<Pizza> resumen = new ArrayList<>();
 
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
@@ -456,12 +469,7 @@ public class tablaMenu extends javax.swing.JFrame {
             resumen.add(pizza);
         }
 
-        factura.setFecha(fecha);
-        factura.setTotal(total);
-        factura.setResumen(resumen.toString().replace(",","|"));
-        System.out.println(factura.getResumen());
-
-        return factura;
+        return resumen;
     }
 
     private int calcularTotal() {
@@ -498,19 +506,44 @@ public class tablaMenu extends javax.swing.JFrame {
         }
 
     }
-    
-    public void borrarPedido() {
+
+    private void borrarPedido() {
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         modelo.setRowCount(0);
         calcularTotal();
     }
-    
+
     private void guardarFacturaDB(Factura factura) {
         PersistenceController persistController = new PersistenceController();
-        if(persistController.addFactura(factura)) {
-            borrarPedido();
-        } else {
+        try {
+            persistController.addFactura(factura);
+        } catch (Exception e) {
             showMessageDialog(null, "ERROR: error al cargar factura");
+        }
+    }
+
+    private Factura getUltimaFactura() {
+        PersistenceController persistController = new PersistenceController();
+        return persistController.getUltimaFactura();
+    }
+
+    private void generarPDF() {
+        Factura factura = getUltimaFactura();
+        ArrayList<Pizza> pizzas = generarResumen();
+        try {
+            PDFCreator doc = new PDFCreator();
+            doc.generarPDF(factura, pizzas);
+        } catch (DocumentException ex) {
+            showMessageDialog(null, "ERROR: error al crear factura");
+        }
+    }
+
+    private Boolean validateFactura() {
+        int rows = tablaTotal.getModel().getRowCount();
+        if (rows > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -551,9 +584,9 @@ public class tablaMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAnchoas;
     private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonDescontar;
     private javax.swing.JButton botonEspecial;
     private javax.swing.JButton botonFugazzetta;
-    private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMuzzarella;
     private javax.swing.JButton botonNapolitana;
     private javax.swing.JButton botonPagar;
