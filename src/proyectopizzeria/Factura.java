@@ -1,13 +1,15 @@
 package proyectopizzeria;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @Table(name="facturas")
@@ -17,10 +19,11 @@ public class Factura implements Serializable {
     private int id;
     @Column(name="Total")
     private int total;
-    @Column(name="Fecha")
-    private String fecha;
     @Column(name="Resumen")
-    private Pizza[] pizza;
+    private String resumen;
+    @Column(name="Fecha")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date fecha;
 
     public Factura() { }
 
@@ -32,11 +35,11 @@ public class Factura implements Serializable {
         this.id = id;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -48,12 +51,11 @@ public class Factura implements Serializable {
         this.total = total;
     }
 
-    public Pizza[] getPizza() {
-        return pizza;
+    public String getResumen() {
+        return resumen;
     }
 
-    public void setPizza(Pizza[] pizza) {
-        this.pizza = pizza;
+    public void setResumen(String pizza) {
+        this.resumen = pizza;
     }
-
 }

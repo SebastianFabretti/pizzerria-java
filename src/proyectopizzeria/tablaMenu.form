@@ -380,7 +380,7 @@
                   <Table columnCount="3" rowCount="0">
                     <Column editable="false" title="Pizza" type="java.lang.Object"/>
                     <Column editable="false" title="Precio" type="java.lang.Object"/>
-                    <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                    <Column editable="false" title="Cantidad" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -406,9 +406,6 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tablaTotalPropertyChange"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

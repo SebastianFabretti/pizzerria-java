@@ -1,5 +1,7 @@
 package proyectopizzeria;
 
+import java.util.ArrayList;
+
 public class Pizza {
 
     private String nombre;
@@ -37,5 +39,9 @@ public class Pizza {
     public int getCantidad() {
         return this.cantidad;
     }
-
+    
+    @Override
+    public String toString() {
+        return "->" + nombre +" X"+ cantidad + " $" + precio + "c/u\n" ;
+    }
 }

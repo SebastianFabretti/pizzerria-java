@@ -4,12 +4,11 @@
  */
 package proyectopizzeria;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
+import proyectopizzeria.persistence.PersistenceController;
 
 /**
  *
@@ -236,16 +235,11 @@ public class tablaMenu extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        tablaTotal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                tablaTotalPropertyChange(evt);
             }
         });
         jScrollPane2.setViewportView(tablaTotal);
@@ -356,8 +350,10 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagarActionPerformed
         // TODO add your handling code here:
-
-
+        Factura factura = procesarFactura();
+        guardarFacturaDB(factura);
+        
+        borrarPedido();
     }//GEN-LAST:event_botonPagarActionPerformed
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
@@ -396,10 +392,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-        modelo.setRowCount(0);
-        calcularTotal();
-
+        borrarPedido();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -445,14 +438,33 @@ public class tablaMenu extends javax.swing.JFrame {
         calcularTotal();
     }//GEN-LAST:event_botonAnchoasActionPerformed
 
-    private void tablaTotalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tablaTotalPropertyChange
-        // TODO add your handling code here:
-        calcularTotal();
-    }//GEN-LAST:event_tablaTotalPropertyChange
+    private Factura procesarFactura() {
+        Factura factura = new Factura();
+        int total = calcularTotal();
+        Date fecha = new Date();
+        ArrayList<Pizza> resumen = new ArrayList<>();
 
-   
+        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
+        int rows = modelo.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            Pizza pizza = new Pizza();
+            pizza.setNombre((String) modelo.getValueAt(i, 0));
+            pizza.setPrecio((int) modelo.getValueAt(i, 1));
+            pizza.setCantidad((int) modelo.getValueAt(i, 2));
+            System.out.println(pizza);
 
-    private void calcularTotal() {
+            resumen.add(pizza);
+        }
+
+        factura.setFecha(fecha);
+        factura.setTotal(total);
+        factura.setResumen(resumen.toString());
+        System.out.println(factura.getResumen());
+
+        return factura;
+    }
+
+    private int calcularTotal() {
         int total = 0;
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
 
@@ -462,6 +474,7 @@ public class tablaMenu extends javax.swing.JFrame {
         }
 
         labelTotal.setText("$" + total);
+        return total;
     }
 
     private void sumarPizza(Pizza pizza) {
@@ -484,6 +497,18 @@ public class tablaMenu extends javax.swing.JFrame {
             modelo.addRow(new Object[]{pizza.getNombre(), pizza.getPrecio(), 1});
         }
 
+    }
+    
+    public void borrarPedido() {
+        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
+        modelo.setRowCount(0);
+        calcularTotal();
+    }
+    
+    private void guardarFacturaDB(Factura factura) {
+        PersistenceController persistController = new PersistenceController();
+        persistController.addFactura(factura);
+        
     }
 
     /**
