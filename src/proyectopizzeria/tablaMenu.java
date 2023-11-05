@@ -7,6 +7,7 @@ package proyectopizzeria;
 
 import java.util.ArrayList;
 import java.util.Date;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import proyectopizzeria.persistence.PersistenceController;
 
@@ -451,14 +452,13 @@ public class tablaMenu extends javax.swing.JFrame {
             pizza.setNombre((String) modelo.getValueAt(i, 0));
             pizza.setPrecio((int) modelo.getValueAt(i, 1));
             pizza.setCantidad((int) modelo.getValueAt(i, 2));
-            System.out.println(pizza);
 
             resumen.add(pizza);
         }
 
         factura.setFecha(fecha);
         factura.setTotal(total);
-        factura.setResumen(resumen.toString());
+        factura.setResumen(resumen.toString().replace(",","|"));
         System.out.println(factura.getResumen());
 
         return factura;
@@ -507,8 +507,11 @@ public class tablaMenu extends javax.swing.JFrame {
     
     private void guardarFacturaDB(Factura factura) {
         PersistenceController persistController = new PersistenceController();
-        persistController.addFactura(factura);
-        
+        if(persistController.addFactura(factura)) {
+            borrarPedido();
+        } else {
+            showMessageDialog(null, "ERROR: error al cargar factura");
+        }
     }
 
     /**
