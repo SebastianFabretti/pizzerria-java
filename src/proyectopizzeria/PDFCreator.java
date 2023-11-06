@@ -29,7 +29,6 @@ public class PDFCreator {
                 Paragraph numPedido = new Paragraph("N° de pedido: " + factura.getId());
                 doc.add(numPedido);
 
-                doc.add(Chunk.NEWLINE);
 
                 Paragraph fecha = new Paragraph("" + factura.getFecha());
                 fecha.setAlignment(2);
