@@ -3,6 +3,7 @@
   <persistence-unit name="ProyectoPizzeriaPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>proyectopizzeria.Factura</class>
+    <class>proyectopizzeria.Pizza</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/pedidos"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

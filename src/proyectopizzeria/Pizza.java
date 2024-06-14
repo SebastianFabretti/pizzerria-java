@@ -1,16 +1,23 @@
 package proyectopizzeria;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Pizza {
-
+@Entity
+@Table(name="facturas")
+public class Pizza implements Serializable {
+    @Id
+    @Column(name="nombre")
     private String nombre;
+    @Column(name="precio")
     private int precio;
+    @Column(name="cantidad")
     private int cantidad;
 
-    public Pizza() {
-        
-    }
+    public Pizza() {}
 
     public Pizza(int cantidad) {
         this.cantidad = cantidad;

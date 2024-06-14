@@ -24,7 +24,7 @@ public class Factura implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
 
-    public Factura() { }
+    public Factura() {}
 
     public int getId() {
         return id;
