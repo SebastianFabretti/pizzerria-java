@@ -1,7 +1,6 @@
 package proyectopizzeria;
 
 import com.itextpdf.text.DocumentException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,7 +26,6 @@ public class tablaMenu extends javax.swing.JFrame {
     public void mapPizzas() {
         PersistenceController persistenceController = new PersistenceController();
         List<Pizza> pizzas = persistenceController.getPizzas();
-        System.out.println(pizzas);
 
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         modelo.setRowCount(0);
@@ -350,10 +348,12 @@ public class tablaMenu extends javax.swing.JFrame {
             guardarFacturaDB(factura);
             generarPDF();
             borrarPedido();
-        } else {
-            showMessageDialog(null, "ERROR: factura sin productos");
-        }
 
+            showMessageDialog(null, "OK: pedido realizado con éxito");
+
+        } else {
+            showMessageDialog(null, "ERROR: agrega productos para realizar un pedido");
+        }
     }//GEN-LAST:event_botonPagarActionPerformed
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
@@ -467,34 +467,18 @@ public class tablaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAnchoasActionPerformed
 
     private Factura procesarFactura() {
+        PersistenceController persistenceController = new PersistenceController();
+
         Factura factura = new Factura();
         int total = calcularTotal();
         Date fecha = new Date();
-        ArrayList<Pizza> resumen = generarResumen();
+        List<Pizza> resumen = persistenceController.getPizzas();
 
         factura.setFecha(fecha);
         factura.setTotal(total);
         factura.setResumen(resumen.toString().replace(",", "|"));
-        System.out.println(factura.getResumen());
 
         return factura;
-    }
-
-    private ArrayList<Pizza> generarResumen() {
-        ArrayList<Pizza> resumen = new ArrayList<>();
-
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            Pizza pizza = new Pizza();
-            pizza.setNombre((String) modelo.getValueAt(i, 0));
-            pizza.setPrecio((int) modelo.getValueAt(i, 1));
-            pizza.setCantidad((int) modelo.getValueAt(i, 2));
-
-            resumen.add(pizza);
-        }
-
-        return resumen;
     }
 
     private int calcularTotal() {
@@ -535,8 +519,10 @@ public class tablaMenu extends javax.swing.JFrame {
     }
 
     private void generarPDF() {
+        PersistenceController persistenceController = new PersistenceController();
+
         Factura factura = getUltimaFactura();
-        ArrayList<Pizza> pizzas = generarResumen();
+        List<Pizza> pizzas = persistenceController.getPizzas();
         try {
             PDFCreator doc = new PDFCreator();
             doc.generarPDF(factura, pizzas);

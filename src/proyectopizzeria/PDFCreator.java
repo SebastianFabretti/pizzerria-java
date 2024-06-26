@@ -10,7 +10,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class PDFCreator {
 
-    public void generarPDF(Factura factura, ArrayList<Pizza> pizzas) throws DocumentException, DocumentException {
+    public void generarPDF(Factura factura, List<Pizza> pizzas) throws DocumentException, DocumentException {
         try {
             Document doc = new Document();
             FileOutputStream archivo = new FileOutputStream("/home/agustin/Documentos/Pedidos/" + factura.getId() + ".pdf");
