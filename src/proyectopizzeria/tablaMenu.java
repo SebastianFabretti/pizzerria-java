@@ -22,7 +22,6 @@ public class tablaMenu extends javax.swing.JFrame {
     public tablaMenu() {
         initComponents();
         this.mapPizzas();
-
     }
 
     public void mapPizzas() {
@@ -40,6 +39,8 @@ public class tablaMenu extends javax.swing.JFrame {
                 pizza.getCantidad()
             });
         }
+
+        this.calcularTotal();
     }
 
     /**
@@ -411,20 +412,26 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescontarActionPerformed
         // TODO add your handling code here:
+        PersistenceController persistenceController = new PersistenceController();
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         int selectedRow = tablaTotal.getSelectedRow();
 
         if (selectedRow >= 0) {
-            int currentQuantity = Integer.parseInt(modelo.getValueAt(selectedRow, 2).toString());
-            if (currentQuantity > 1) {
-                currentQuantity--;
-                modelo.setValueAt(currentQuantity, selectedRow, 2);
-            } else {
-                modelo.removeRow(selectedRow);
+            String nombre = (String) modelo.getValueAt(selectedRow, 0);
+            Pizza pizza = persistenceController.getPizzaByName(nombre);
+            pizza.setCantidad(pizza.getCantidad() - 1);
+            try {
+                persistenceController.editPizza(pizza);
+            } catch (Exception ex) {
+                Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            this.mapPizzas();
+
+        } else {
+            showMessageDialog(null, "ERROR: seleccione un producto para descontar");
         }
 
-        calcularTotal();
     }//GEN-LAST:event_botonDescontarActionPerformed
 
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
@@ -492,51 +499,25 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private int calcularTotal() {
         int total = 0;
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            total += (int) modelo.getValueAt(i, 1) * (int) modelo.getValueAt(i, 2);
+        PersistenceController persistenceController = new PersistenceController();
+        List<Pizza> pizzas = persistenceController.getPizzas();
+        for (Pizza pizza : pizzas) {
+            total += pizza.getCantidad() * pizza.getPrecio();
         }
 
         labelTotal.setText("$" + total);
         return total;
     }
 
-    private void sumarPizza(Pizza pizza) {
-        boolean existe = false;
-
-        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-
-        int rows = modelo.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            if (modelo.getValueAt(i, 0).equals(pizza.getNombre())) {
-                int cantidad = (int) modelo.getValueAt(i, 2);
-                cantidad++;
-                modelo.setValueAt(cantidad, i, 2);
-                existe = true;
-                break;
-            }
-        }
-
-        if (!existe) {
-            modelo.addRow(new Object[]{pizza.getNombre(), pizza.getPrecio(), 1});
-        }
-
-    }
-
     private void borrarPedido() {
         try {
-            //        DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
-//        modelo.setRowCount(0);
-//        calcularTotal();
-
             PersistenceController persistenceController = new PersistenceController();
             persistenceController.limpiarPedido();
         } catch (Exception ex) {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        this.mapPizzas();
     }
 
     private void guardarFacturaDB(Factura factura) {
@@ -565,11 +546,13 @@ public class tablaMenu extends javax.swing.JFrame {
     }
 
     private Boolean validateFactura() {
-        int rows = tablaTotal.getModel().getRowCount();
-        if (rows > 0) {
-            return true;
-        } else {
+        PersistenceController persistenceController = new PersistenceController();
+        List<Pizza> pizzas = persistenceController.getPizzas();
+
+        if (pizzas.isEmpty()) {
             return false;
+        } else {
+            return true;
         }
     }
 

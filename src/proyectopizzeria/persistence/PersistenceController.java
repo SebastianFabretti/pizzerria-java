@@ -60,4 +60,15 @@ public class PersistenceController {
         return pizzaJpaController.findPizza(id);
     }
 
+    public Pizza getPizzaByName(String nombre) {
+        List<Pizza> pizzas = pizzaJpaController.findPizzaEntities();
+        int id = 0;
+        for(Pizza pizza : pizzas) {
+            if (pizza.getNombre().equals(nombre)) {
+                id = pizza.getId();
+            }
+        }
+        return pizzaJpaController.findPizza(id);
+    }
+
 }
