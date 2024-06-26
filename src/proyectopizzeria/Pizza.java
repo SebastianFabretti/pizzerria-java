@@ -3,13 +3,17 @@ package proyectopizzeria;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="facturas")
+@Table(name="pizzas")
 public class Pizza implements Serializable {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    private int id;
     @Column(name="nombre")
     private String nombre;
     @Column(name="precio")
@@ -22,6 +26,16 @@ public class Pizza implements Serializable {
     public Pizza(int cantidad) {
         this.cantidad = cantidad;
     }
+    
+    public Pizza(String nombre, int cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
+    
+    public int getId() {
+        return id;
+    }   
+    
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
