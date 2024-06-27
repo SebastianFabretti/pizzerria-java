@@ -14,18 +14,19 @@ import proyectopizzeria.persistence.PersistenceController;
  * @author agustin
  */
 public class tablaMenu extends javax.swing.JFrame {
+    PersistenceController persistenceController = new PersistenceController();
 
     /**
      * Creates new form Menu
      */
     public tablaMenu() {
         initComponents();
-        this.mapPizzas();
+        this.mapPedido();
+        this.mapMenu();
     }
 
-    public void mapPizzas() {
-        PersistenceController persistenceController = new PersistenceController();
-        List<Pizza> pizzas = persistenceController.getPizzas();
+    private void mapPedido() {
+        List<Pizza> pizzas = this.persistenceController.getPizzas();
 
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         modelo.setRowCount(0);
@@ -39,6 +40,20 @@ public class tablaMenu extends javax.swing.JFrame {
         }
 
         this.calcularTotal();
+    }
+    
+    private void mapMenu() {
+        List<Pizza> pizzas = this.persistenceController.getAllPizzas();
+        
+        DefaultTableModel modelo = (DefaultTableModel) menuTable.getModel();
+        modelo.setRowCount(0);
+        
+        for(Pizza pizza : pizzas) {
+            modelo.addRow(new Object[]{
+               pizza.getNombre(),
+               pizza.getPrecio()
+            });
+        }
     }
 
     /**
@@ -64,7 +79,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelAnchoas = new javax.swing.JLabel();
         botonAnchoas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        menuTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTotal = new javax.swing.JTable();
         botonCancelar = new javax.swing.JButton();
@@ -200,14 +215,9 @@ public class tablaMenu extends javax.swing.JFrame {
                 .addGap(771, 771, 771))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        menuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Muzzarella", "$20"},
-                {"Napolitana", "$30"},
-                {"Fugazzetta", "$30"},
-                {"Especial", "$40"},
-                {"Anchoas", "$50"},
-                {"Vegana", "$70"}
+
             },
             new String [] {
                 "Pizza", "Precio"
@@ -221,7 +231,7 @@ public class tablaMenu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(menuTable);
 
         tablaTotal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -329,8 +339,7 @@ public class tablaMenu extends javax.swing.JFrame {
     private void botonMuzzarellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMuzzarellaActionPerformed
         // TODO add your handling code here:
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            Pizza pizza = persistenceController.getPizza(1);
+            Pizza pizza = this.persistenceController.getPizza(1);
             pizza.setCantidad(pizza.getCantidad() + 1);
             persistenceController.editPizza(pizza);
 
@@ -338,7 +347,7 @@ public class tablaMenu extends javax.swing.JFrame {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
     }//GEN-LAST:event_botonMuzzarellaActionPerformed
 
     private void botonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagarActionPerformed
@@ -359,8 +368,7 @@ public class tablaMenu extends javax.swing.JFrame {
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
         // TODO add your handling code here:
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            Pizza pizza = persistenceController.getPizza(2);
+            Pizza pizza = this.persistenceController.getPizza(2);
             pizza.setCantidad(pizza.getCantidad() + 1);
             persistenceController.editPizza(pizza);
 
@@ -368,7 +376,7 @@ public class tablaMenu extends javax.swing.JFrame {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
 
     }//GEN-LAST:event_botonNapolitanaActionPerformed
 
@@ -376,8 +384,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            Pizza pizza = persistenceController.getPizza(3);
+            Pizza pizza = this.persistenceController.getPizza(3);
             pizza.setCantidad(pizza.getCantidad() + 1);
             persistenceController.editPizza(pizza);
 
@@ -385,15 +392,14 @@ public class tablaMenu extends javax.swing.JFrame {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
 
     }//GEN-LAST:event_botonFugazzettaActionPerformed
 
     private void botonEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEspecialActionPerformed
         // TODO add your handling code here:
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            Pizza pizza = persistenceController.getPizza(4);
+            Pizza pizza = this.persistenceController.getPizza(4);
             pizza.setCantidad(pizza.getCantidad() + 1);
             persistenceController.editPizza(pizza);
 
@@ -401,7 +407,7 @@ public class tablaMenu extends javax.swing.JFrame {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
 
     }//GEN-LAST:event_botonEspecialActionPerformed
 
@@ -412,21 +418,20 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescontarActionPerformed
         // TODO add your handling code here:
-        PersistenceController persistenceController = new PersistenceController();
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         int selectedRow = tablaTotal.getSelectedRow();
 
         if (selectedRow >= 0) {
             String nombre = (String) modelo.getValueAt(selectedRow, 0);
-            Pizza pizza = persistenceController.getPizzaByName(nombre);
+            Pizza pizza = this.persistenceController.getPizzaByName(nombre);
             pizza.setCantidad(pizza.getCantidad() - 1);
             try {
-                persistenceController.editPizza(pizza);
+                this.persistenceController.editPizza(pizza);
             } catch (Exception ex) {
                 Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            this.mapPizzas();
+            this.mapPedido();
 
         } else {
             showMessageDialog(null, "ERROR: seleccione un producto para descontar");
@@ -437,42 +442,38 @@ public class tablaMenu extends javax.swing.JFrame {
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
         // TODO add your handling code here:
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            Pizza pizza = persistenceController.getPizza(6);
+            Pizza pizza = this.persistenceController.getPizza(6);
             pizza.setCantidad(pizza.getCantidad() + 1);
-            persistenceController.editPizza(pizza);
+            this.persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
 
     }//GEN-LAST:event_botonVeganaActionPerformed
 
     private void botonAnchoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnchoasActionPerformed
         // TODO add your handling code here:
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            Pizza pizza = persistenceController.getPizza(5);
+            Pizza pizza = this.persistenceController.getPizza(5);
             pizza.setCantidad(pizza.getCantidad() + 1);
-            persistenceController.editPizza(pizza);
+            this.persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
 
     }//GEN-LAST:event_botonAnchoasActionPerformed
 
     private Factura procesarFactura() {
-        PersistenceController persistenceController = new PersistenceController();
-
         Factura factura = new Factura();
         int total = calcularTotal();
         Date fecha = new Date();
-        List<Pizza> resumen = persistenceController.getPizzas();
+        List<Pizza> resumen = this.persistenceController.getPizzas();
 
         factura.setFecha(fecha);
         factura.setTotal(total);
@@ -483,8 +484,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private int calcularTotal() {
         int total = 0;
-        PersistenceController persistenceController = new PersistenceController();
-        List<Pizza> pizzas = persistenceController.getPizzas();
+        List<Pizza> pizzas = this.persistenceController.getPizzas();
         for (Pizza pizza : pizzas) {
             total += pizza.getCantidad() * pizza.getPrecio();
         }
@@ -495,34 +495,29 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void borrarPedido() {
         try {
-            PersistenceController persistenceController = new PersistenceController();
-            persistenceController.limpiarPedido();
+            this.persistenceController.limpiarPedido();
         } catch (Exception ex) {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.mapPizzas();
+        this.mapPedido();
     }
 
     private void guardarFacturaDB(Factura factura) {
-        PersistenceController persistController = new PersistenceController();
         try {
-            persistController.addFactura(factura);
+            this.persistenceController.addFactura(factura);
         } catch (Exception e) {
             showMessageDialog(null, "ERROR: error al cargar factura");
         }
     }
 
     private Factura getUltimaFactura() {
-        PersistenceController persistController = new PersistenceController();
-        return persistController.getUltimaFactura();
+        return this.persistenceController.getUltimaFactura();
     }
 
     private void generarPDF() {
-        PersistenceController persistenceController = new PersistenceController();
-
         Factura factura = getUltimaFactura();
-        List<Pizza> pizzas = persistenceController.getPizzas();
+        List<Pizza> pizzas = this.persistenceController.getPizzas();
         try {
             PDFCreator doc = new PDFCreator();
             doc.generarPDF(factura, pizzas);
@@ -532,8 +527,7 @@ public class tablaMenu extends javax.swing.JFrame {
     }
 
     private Boolean validateFactura() {
-        PersistenceController persistenceController = new PersistenceController();
-        List<Pizza> pizzas = persistenceController.getPizzas();
+        List<Pizza> pizzas = this.persistenceController.getPizzas();
 
         if (pizzas.isEmpty()) {
             return false;
@@ -590,7 +584,6 @@ public class tablaMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAnchoas;
     private javax.swing.JLabel labelEspecial;
     private javax.swing.JLabel labelFugazzetta;
@@ -599,6 +592,7 @@ public class tablaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel labelNapolitana;
     private javax.swing.JLabel labelTotal;
     private javax.swing.JLabel labelVegana;
+    private javax.swing.JTable menuTable;
     private javax.swing.JTable tablaTotal;
     // End of variables declaration//GEN-END:variables
 }

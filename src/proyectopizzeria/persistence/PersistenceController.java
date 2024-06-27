@@ -55,6 +55,10 @@ public class PersistenceController {
 
         return pizzas;
     }
+    
+    public List<Pizza> getAllPizzas() {
+        return pizzaJpaController.findPizzaEntities();
+    }
 
     public Pizza getPizza(int id) {
         return pizzaJpaController.findPizza(id);

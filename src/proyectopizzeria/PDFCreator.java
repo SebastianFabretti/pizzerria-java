@@ -11,6 +11,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,17 +20,19 @@ import java.util.List;
  */
 public class PDFCreator {
 
+    private env env = new env();
+
     public void generarPDF(Factura factura, List<Pizza> pizzas) throws DocumentException, DocumentException {
         try {
             Document doc = new Document();
-            FileOutputStream archivo = new FileOutputStream("/home/agustin/Documentos/Pedidos/" + factura.getId() + ".pdf");
+//            FileOutputStream archivo = new FileOutputStream("/home/agustin/Documentos/Pedidos/" + factura.getId() + ".pdf");
+            FileOutputStream archivo = new FileOutputStream(this.env.getPDFPath() + factura.getId() + ".pdf");
             PdfWriter.getInstance(doc, archivo);
             doc.open();
 
             try {
                 Paragraph numPedido = new Paragraph("N° de pedido: " + factura.getId());
                 doc.add(numPedido);
-
 
                 Paragraph fecha = new Paragraph("" + factura.getFecha());
                 fecha.setAlignment(2);
@@ -59,17 +63,18 @@ public class PDFCreator {
                     table.addCell(c3);
                 }
 
-                PdfPCell total = new PdfPCell(new Phrase("Total: $"+factura.getTotal()));
+                PdfPCell total = new PdfPCell(new Phrase("Total: $" + factura.getTotal()));
                 total.setColspan(3);
                 table.addCell(total);
-                
+
                 doc.add(table);
                 doc.close();
 
             } catch (Exception e) {
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            Logger.getLogger(PDFCreator.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
