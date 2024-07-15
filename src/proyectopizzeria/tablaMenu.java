@@ -14,6 +14,7 @@ import proyectopizzeria.persistence.PersistenceController;
  * @author agustin
  */
 public class tablaMenu extends javax.swing.JFrame {
+
     PersistenceController persistenceController = new PersistenceController();
 
     /**
@@ -27,6 +28,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void mapPedido() {
         List<Pizza> pizzas = this.persistenceController.getPizzas();
+        List<Bebida> bebidas = this.persistenceController.getBebidas();
 
         DefaultTableModel modelo = (DefaultTableModel) tablaTotal.getModel();
         modelo.setRowCount(0);
@@ -35,23 +37,44 @@ public class tablaMenu extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 pizza.getNombre(),
                 pizza.getPrecio(),
-                pizza.getCantidad()
+                pizza.getCantidad(),
+                pizza.getClass()
+            });
+        }
+
+        for (Bebida bebida : bebidas) {
+            modelo.addRow(new Object[]{
+                bebida.getNombre(),
+                bebida.getPrecio(),
+                bebida.getCantidad(),
+                bebida.getClass()
             });
         }
 
         this.calcularTotal();
     }
-    
+
     private void mapMenu() {
         List<Pizza> pizzas = this.persistenceController.getAllPizzas();
-        
-        DefaultTableModel modelo = (DefaultTableModel) menuTable.getModel();
-        modelo.setRowCount(0);
-        
-        for(Pizza pizza : pizzas) {
-            modelo.addRow(new Object[]{
-               pizza.getNombre(),
-               pizza.getPrecio()
+
+        DefaultTableModel modeloPizza = (DefaultTableModel) pizzaTable.getModel();
+        modeloPizza.setRowCount(0);
+
+        for (Pizza pizza : pizzas) {
+            modeloPizza.addRow(new Object[]{
+                pizza.getNombre(),
+                pizza.getPrecio()
+            });
+        }
+
+        List<Bebida> bebidas = this.persistenceController.getAllBebidas();
+        DefaultTableModel modeloBebida = (DefaultTableModel) bebidaTable.getModel();
+        modeloBebida.setRowCount(0);
+
+        for (Bebida bebida : bebidas) {
+            modeloBebida.addRow(new Object[]{
+                bebida.getNombre(),
+                bebida.getPrecio()
             });
         }
     }
@@ -79,7 +102,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelAnchoas = new javax.swing.JLabel();
         botonAnchoas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        menuTable = new javax.swing.JTable();
+        pizzaTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTotal = new javax.swing.JTable();
         botonCancelar = new javax.swing.JButton();
@@ -88,42 +111,73 @@ public class tablaMenu extends javax.swing.JFrame {
         labelLabelTotal = new javax.swing.JLabel();
         labelTotal = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        bebidaTable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        labelMuzzarella1 = new javax.swing.JLabel();
+        botonPepsi = new javax.swing.JButton();
+        labelMuzzarella2 = new javax.swing.JLabel();
+        botonSprite = new javax.swing.JButton();
+        labelMuzzarella3 = new javax.swing.JLabel();
+        botonAgua = new javax.swing.JButton();
+        labelMuzzarella4 = new javax.swing.JLabel();
+        botonCerveza = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
-
-        botonMuzzarella.setText("Muzzarella");
-        botonMuzzarella.setMargin(new java.awt.Insets(5, 10, 5, 10));
-        botonMuzzarella.setMaximumSize(new java.awt.Dimension(896, 800));
-        botonMuzzarella.setMinimumSize(new java.awt.Dimension(896, 800));
-        botonMuzzarella.setPreferredSize(new java.awt.Dimension(896, 800));
+        botonMuzzarella.setText("+");
+        botonMuzzarella.setAlignmentX(0.5F);
+        botonMuzzarella.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonMuzzarella.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonMuzzarella.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonMuzzarella.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        botonMuzzarella.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonMuzzarella.setMinimumSize(new java.awt.Dimension(30, 30));
+        botonMuzzarella.setPreferredSize(new java.awt.Dimension(30, 30));
         botonMuzzarella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMuzzarellaActionPerformed(evt);
             }
         });
 
-        botonFugazzetta.setText("Fugazzetta");
-        botonFugazzetta.setMargin(new java.awt.Insets(5, 10, 5, 10));
+        botonFugazzetta.setText("+");
+        botonFugazzetta.setAlignmentX(0.5F);
+        botonFugazzetta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonFugazzetta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonFugazzetta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonFugazzetta.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        botonFugazzetta.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonFugazzetta.setMinimumSize(new java.awt.Dimension(30, 30));
         botonFugazzetta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonFugazzettaActionPerformed(evt);
             }
         });
 
-        botonEspecial.setText("Especial");
-        botonEspecial.setMargin(new java.awt.Insets(5, 10, 5, 10));
+        botonEspecial.setText("+");
+        botonEspecial.setAlignmentX(0.5F);
+        botonEspecial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonEspecial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEspecial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonEspecial.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        botonEspecial.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonEspecial.setMinimumSize(new java.awt.Dimension(30, 30));
         botonEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEspecialActionPerformed(evt);
             }
         });
 
-        botonVegana.setText("Vegana");
-        botonVegana.setMargin(new java.awt.Insets(5, 10, 5, 10));
-        botonVegana.setPreferredSize(new java.awt.Dimension(80, 24));
+        botonVegana.setText("+");
+        botonVegana.setAlignmentX(0.5F);
+        botonVegana.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonVegana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVegana.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonVegana.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        botonVegana.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonVegana.setMinimumSize(new java.awt.Dimension(30, 30));
+        botonVegana.setPreferredSize(new java.awt.Dimension(30, 30));
         botonVegana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonVeganaActionPerformed(evt);
@@ -140,8 +194,14 @@ public class tablaMenu extends javax.swing.JFrame {
 
         labelVegana.setText("Vegana");
 
-        botonNapolitana.setText("Napolitana");
-        botonNapolitana.setMargin(new java.awt.Insets(5, 10, 5, 10));
+        botonNapolitana.setText("+");
+        botonNapolitana.setAlignmentX(0.5F);
+        botonNapolitana.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonNapolitana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonNapolitana.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonNapolitana.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        botonNapolitana.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonNapolitana.setMinimumSize(new java.awt.Dimension(30, 30));
         botonNapolitana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonNapolitanaActionPerformed(evt);
@@ -150,8 +210,14 @@ public class tablaMenu extends javax.swing.JFrame {
 
         labelAnchoas.setText("Anchoas");
 
-        botonAnchoas.setText("Anchoas");
-        botonAnchoas.setMargin(new java.awt.Insets(5, 10, 5, 10));
+        botonAnchoas.setText("+");
+        botonAnchoas.setAlignmentX(0.5F);
+        botonAnchoas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonAnchoas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAnchoas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonAnchoas.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        botonAnchoas.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonAnchoas.setMinimumSize(new java.awt.Dimension(30, 30));
         botonAnchoas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAnchoasActionPerformed(evt);
@@ -163,59 +229,67 @@ public class tablaMenu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAnchoas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(botonMuzzarella, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(botonVegana, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonNapolitana, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonFugazzetta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonEspecial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(32, 32, 32))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelMuzzarella)
                             .addComponent(labelNapolitana)
                             .addComponent(labelFugazzetta)
                             .addComponent(labelEspecial)
                             .addComponent(labelVegana)
-                            .addComponent(labelAnchoas))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(labelAnchoas)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAnchoas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonVegana, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonFugazzetta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonNapolitana, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonMuzzarella, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(7, 7, 7))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonAnchoas, botonEspecial, botonFugazzetta, botonMuzzarella, botonNapolitana, botonVegana});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelAnchoas, labelEspecial, labelFugazzetta, labelMuzzarella, labelNapolitana, labelVegana});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelMuzzarella)
+                .addContainerGap()
+                .addComponent(labelMuzzarella, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonMuzzarella, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonMuzzarella, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNapolitana)
+                .addComponent(labelNapolitana, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonNapolitana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonNapolitana)
+                .addComponent(labelFugazzetta, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelFugazzetta)
+                .addComponent(botonFugazzetta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonFugazzetta)
+                .addComponent(botonEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelEspecial)
-                .addGap(12, 12, 12)
-                .addComponent(botonEspecial)
+                .addComponent(labelVegana, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelVegana)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonVegana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonVegana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelAnchoas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonAnchoas)
-                .addGap(771, 771, 771))
+                .addComponent(botonAnchoas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        menuTable.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonAnchoas, botonEspecial, botonFugazzetta, botonMuzzarella, botonNapolitana, botonVegana});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelAnchoas, labelEspecial, labelFugazzetta, labelMuzzarella, labelNapolitana, labelVegana});
+
+        pizzaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -231,18 +305,18 @@ public class tablaMenu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(menuTable);
+        jScrollPane1.setViewportView(pizzaTable);
 
         tablaTotal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Pizza", "Precio", "Cantidad"
+                "Producto", "Precio", "Cantidad", "Class"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -250,6 +324,11 @@ public class tablaMenu extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tablaTotal);
+        if (tablaTotal.getColumnModel().getColumnCount() > 0) {
+            tablaTotal.getColumnModel().getColumn(3).setMinWidth(0);
+            tablaTotal.getColumnModel().getColumn(3).setPreferredWidth(0);
+            tablaTotal.getColumnModel().getColumn(3).setMaxWidth(0);
+        }
 
         botonCancelar.setText("Cancelar");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -280,6 +359,149 @@ public class tablaMenu extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectopizzeria/img/logo.jpeg"))); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(232, 140));
 
+        bebidaTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bebida", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(bebidaTable);
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(98, 385));
+
+        labelMuzzarella1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMuzzarella1.setText("Pepsi");
+
+        botonPepsi.setText("+");
+        botonPepsi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonPepsi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonPepsi.setMargin(new java.awt.Insets(10, 5, 10, 5));
+        botonPepsi.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonPepsi.setMinimumSize(new java.awt.Dimension(30, 30));
+        botonPepsi.setPreferredSize(new java.awt.Dimension(30, 30));
+        botonPepsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPepsiActionPerformed(evt);
+            }
+        });
+
+        labelMuzzarella2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMuzzarella2.setText("Sprite");
+
+        botonSprite.setText("+");
+        botonSprite.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonSprite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSprite.setMargin(new java.awt.Insets(10, 5, 10, 5));
+        botonSprite.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonSprite.setMinimumSize(new java.awt.Dimension(30, 30));
+        botonSprite.setPreferredSize(new java.awt.Dimension(30, 30));
+        botonSprite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSpriteActionPerformed(evt);
+            }
+        });
+
+        labelMuzzarella3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMuzzarella3.setText("Agua");
+
+        botonAgua.setText("+");
+        botonAgua.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonAgua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAgua.setMargin(new java.awt.Insets(10, 5, 10, 5));
+        botonAgua.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonAgua.setMinimumSize(new java.awt.Dimension(30, 30));
+        botonAgua.setPreferredSize(new java.awt.Dimension(30, 30));
+        botonAgua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAguaActionPerformed(evt);
+            }
+        });
+
+        labelMuzzarella4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMuzzarella4.setText("Cerveza");
+
+        botonCerveza.setText("+");
+        botonCerveza.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonCerveza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCerveza.setMargin(new java.awt.Insets(10, 5, 10, 5));
+        botonCerveza.setMaximumSize(new java.awt.Dimension(30, 30));
+        botonCerveza.setMinimumSize(new java.awt.Dimension(30, 30));
+        botonCerveza.setPreferredSize(new java.awt.Dimension(30, 30));
+        botonCerveza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCervezaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(botonPepsi, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel2Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonAgua, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonSprite, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelMuzzarella1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelMuzzarella2, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelMuzzarella3, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelMuzzarella4, javax.swing.GroupLayout.Alignment.CENTER))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botonCerveza, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonAgua, botonCerveza, botonPepsi, botonSprite});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelMuzzarella1, labelMuzzarella2, labelMuzzarella3, labelMuzzarella4});
+
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(botonPepsi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(botonSprite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(botonAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelMuzzarella1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(labelMuzzarella2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(labelMuzzarella3)
+                        .addGap(54, 54, 54)
+                        .addComponent(labelMuzzarella4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonCerveza, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonAgua, botonCerveza, botonPepsi, botonSprite});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelMuzzarella1, labelMuzzarella2, labelMuzzarella3, labelMuzzarella4});
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -287,51 +509,71 @@ public class tablaMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelLabelTotal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelTotal))
-                            .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonDescontar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonDescontar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(labelLabelTotal)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelTotal))
+                                .addComponent(botonCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0))
+                    .addComponent(botonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jPanel2});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 368, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelLabelTotal, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelTotal, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelLabelTotal)
+                            .addComponent(labelTotal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonDescontar)))
-                        .addGap(7, 7, 7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel1, jPanel2});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -423,12 +665,23 @@ public class tablaMenu extends javax.swing.JFrame {
 
         if (selectedRow >= 0) {
             String nombre = (String) modelo.getValueAt(selectedRow, 0);
-            Pizza pizza = this.persistenceController.getPizzaByName(nombre);
-            pizza.setCantidad(pizza.getCantidad() - 1);
-            try {
-                this.persistenceController.editPizza(pizza);
-            } catch (Exception ex) {
-                Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+            
+            if (modelo.getValueAt(selectedRow, 3).equals(Pizza.class)) {
+                Pizza pizza = this.persistenceController.getPizzaByName(nombre);
+                pizza.setCantidad(pizza.getCantidad() - 1);
+                try {
+                    this.persistenceController.editPizza(pizza);
+                } catch (Exception ex) {
+                    Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if(modelo.getValueAt(selectedRow, 3).equals(Bebida.class)) {
+                Bebida bebida = this.persistenceController.getBebidaByName(nombre);
+                bebida.setCantidad(bebida.getCantidad() - 1);
+                try {
+                    this.persistenceController.editBebida(bebida);
+                } catch (Exception ex) {
+                    Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             this.mapPedido();
@@ -468,6 +721,65 @@ public class tablaMenu extends javax.swing.JFrame {
         this.mapPedido();
 
     }//GEN-LAST:event_botonAnchoasActionPerformed
+
+    private void botonPepsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPepsiActionPerformed
+        // TODO add your handling code here:
+        try {
+            Bebida bebida = this.persistenceController.getBebida(1);
+            bebida.setCantidad(bebida.getCantidad() + 1);
+            persistenceController.editBebida(bebida);
+
+        } catch (Exception ex) {
+            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.mapPedido();
+    }//GEN-LAST:event_botonPepsiActionPerformed
+
+    private void botonSpriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSpriteActionPerformed
+        // TODO add your handling code here:
+        try {
+            Bebida bebida = this.persistenceController.getBebida(2);
+            bebida.setCantidad(bebida.getCantidad() + 1);
+            persistenceController.editBebida(bebida);
+
+        } catch (Exception ex) {
+            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.mapPedido();
+
+    }//GEN-LAST:event_botonSpriteActionPerformed
+
+    private void botonAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAguaActionPerformed
+        // TODO add your handling code here:
+        try {
+            Bebida bebida = this.persistenceController.getBebida(3);
+            bebida.setCantidad(bebida.getCantidad() + 1);
+            persistenceController.editBebida(bebida);
+
+        } catch (Exception ex) {
+            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.mapPedido();
+
+    }//GEN-LAST:event_botonAguaActionPerformed
+
+    private void botonCervezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCervezaActionPerformed
+        // TODO add your handling code here:
+        try {
+            Bebida bebida = this.persistenceController.getBebida(4);
+            bebida.setCantidad(bebida.getCantidad() + 1);
+            persistenceController.editBebida(bebida);
+
+        } catch (Exception ex) {
+            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.mapPedido();
+
+    }//GEN-LAST:event_botonCervezaActionPerformed
 
     private Factura procesarFactura() {
         Factura factura = new Factura();
@@ -571,28 +883,39 @@ public class tablaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable bebidaTable;
+    private javax.swing.JButton botonAgua;
     private javax.swing.JButton botonAnchoas;
     private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonCerveza;
     private javax.swing.JButton botonDescontar;
     private javax.swing.JButton botonEspecial;
     private javax.swing.JButton botonFugazzetta;
     private javax.swing.JButton botonMuzzarella;
     private javax.swing.JButton botonNapolitana;
     private javax.swing.JButton botonPagar;
+    private javax.swing.JButton botonPepsi;
+    private javax.swing.JButton botonSprite;
     private javax.swing.JButton botonVegana;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelAnchoas;
     private javax.swing.JLabel labelEspecial;
     private javax.swing.JLabel labelFugazzetta;
     private javax.swing.JLabel labelLabelTotal;
     private javax.swing.JLabel labelMuzzarella;
+    private javax.swing.JLabel labelMuzzarella1;
+    private javax.swing.JLabel labelMuzzarella2;
+    private javax.swing.JLabel labelMuzzarella3;
+    private javax.swing.JLabel labelMuzzarella4;
     private javax.swing.JLabel labelNapolitana;
     private javax.swing.JLabel labelTotal;
     private javax.swing.JLabel labelVegana;
-    private javax.swing.JTable menuTable;
+    private javax.swing.JTable pizzaTable;
     private javax.swing.JTable tablaTotal;
     // End of variables declaration//GEN-END:variables
 }

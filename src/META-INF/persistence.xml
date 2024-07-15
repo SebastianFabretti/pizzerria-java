@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>proyectopizzeria.Factura</class>
     <class>proyectopizzeria.Pizza</class>
+    <class>proyectopizzeria.Bebida</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/pedidos"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
