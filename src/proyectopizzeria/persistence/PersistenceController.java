@@ -35,11 +35,11 @@ public class PersistenceController {
         return factura;
     }
 
+    // Pizzas
     public void editPizza(Pizza pizza) throws Exception {
         pizzaJpaController.edit(pizza);
     }
 
-    // Pizzas
     public List<Pizza> getPizzas() {
         List<Pizza> p = pizzaJpaController.findPizzaEntities();
         List<Pizza> pizzas = new ArrayList<>();
@@ -124,7 +124,7 @@ public class PersistenceController {
         }
     }
 
-    public List<Producto> getPedidoFinal() {
+    public List<Producto> getPedido() {
         List<Producto> productos = new ArrayList<>();
         List<Pizza> pizzas = getPizzas();
         List<Bebida> bebidas = getBebidas();

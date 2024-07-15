@@ -6,7 +6,7 @@
     <class>proyectopizzeria.Pizza</class>
     <class>proyectopizzeria.Bebida</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/pedidos"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/pizzeria"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="12345678"/>

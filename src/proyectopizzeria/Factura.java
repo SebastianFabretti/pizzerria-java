@@ -30,10 +30,6 @@ public class Factura implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Date getFecha() {
         return fecha;
     }
@@ -54,7 +50,7 @@ public class Factura implements Serializable {
         return resumen;
     }
 
-    public void setResumen(String pizza) {
-        this.resumen = pizza;
+    public void setResumen(String producto) {
+        this.resumen = producto;
     }
 }

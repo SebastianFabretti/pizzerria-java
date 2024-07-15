@@ -22,7 +22,7 @@ public class PDFCreator {
 
     private env env = new env();
 
-    public void generarPDF(Factura factura, List<Pizza> pizzas) throws DocumentException, DocumentException {
+    public void generarPDF(Factura factura, List<Producto> productos) throws DocumentException, DocumentException {
         try {
             Document doc = new Document();
 //            FileOutputStream archivo = new FileOutputStream("/home/agustin/Documentos/Pedidos/" + factura.getId() + ".pdf");
@@ -42,18 +42,18 @@ public class PDFCreator {
 
                 PdfPTable table = new PdfPTable(3);
                 table.setWidthPercentage(50);
-                PdfPCell pizza = new PdfPCell(new Phrase("Pizza"));
-                pizza.setBackgroundColor(BaseColor.CYAN);
+                PdfPCell producto = new PdfPCell(new Phrase("Producto"));
+                producto.setBackgroundColor(BaseColor.CYAN);
                 PdfPCell cant = new PdfPCell(new Phrase("Cantidad"));
                 cant.setBackgroundColor(BaseColor.CYAN);
                 PdfPCell precio = new PdfPCell(new Phrase("Precio($)"));
                 precio.setBackgroundColor(BaseColor.CYAN);
 
-                table.addCell(pizza);
+                table.addCell(producto);
                 table.addCell(cant);
                 table.addCell(precio);
 
-                for (Pizza p : pizzas) {
+                for (Producto p : productos) {
                     PdfPCell c1 = new PdfPCell(new Phrase(p.getNombre()));
                     PdfPCell c2 = new PdfPCell(new Phrase("" + p.getCantidad()));
                     PdfPCell c3 = new PdfPCell(new Phrase("" + p.getPrecio()));
@@ -65,12 +65,14 @@ public class PDFCreator {
 
                 PdfPCell total = new PdfPCell(new Phrase("Total: $" + factura.getTotal()));
                 total.setColspan(3);
+                total.setBackgroundColor(BaseColor.LIGHT_GRAY);
                 table.addCell(total);
 
                 doc.add(table);
                 doc.close();
 
             } catch (Exception e) {
+                Logger.getLogger(PDFCreator.class.getName()).log(Level.SEVERE, null, e);
             }
 
         } catch (Exception ex) {

@@ -512,12 +512,12 @@ public class tablaMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,9 +530,7 @@ public class tablaMenu extends javax.swing.JFrame {
                                 .addComponent(botonCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -543,17 +541,9 @@ public class tablaMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelLabelTotal)
@@ -564,8 +554,14 @@ public class tablaMenu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonDescontar)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(botonDescontar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -665,7 +661,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
         if (selectedRow >= 0) {
             String nombre = (String) modelo.getValueAt(selectedRow, 0);
-            
+
             if (modelo.getValueAt(selectedRow, 3).equals(Pizza.class)) {
                 Pizza pizza = this.persistenceController.getPizzaByName(nombre);
                 pizza.setCantidad(pizza.getCantidad() - 1);
@@ -674,7 +670,7 @@ public class tablaMenu extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if(modelo.getValueAt(selectedRow, 3).equals(Bebida.class)) {
+            } else if (modelo.getValueAt(selectedRow, 3).equals(Bebida.class)) {
                 Bebida bebida = this.persistenceController.getBebidaByName(nombre);
                 bebida.setCantidad(bebida.getCantidad() - 1);
                 try {
@@ -785,7 +781,7 @@ public class tablaMenu extends javax.swing.JFrame {
         Factura factura = new Factura();
         int total = calcularTotal();
         Date fecha = new Date();
-        List<Pizza> resumen = this.persistenceController.getPizzas();
+        List<Producto> resumen = this.persistenceController.getPedido();
 
         factura.setFecha(fecha);
         factura.setTotal(total);
@@ -796,9 +792,9 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private int calcularTotal() {
         int total = 0;
-        List<Pizza> pizzas = this.persistenceController.getPizzas();
-        for (Pizza pizza : pizzas) {
-            total += pizza.getCantidad() * pizza.getPrecio();
+        List<Producto> productos = this.persistenceController.getPedido();
+        for (Producto producto : productos) {
+            total += producto.getCantidad() * producto.getPrecio();
         }
 
         labelTotal.setText("$" + total);
@@ -829,19 +825,19 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void generarPDF() {
         Factura factura = getUltimaFactura();
-        List<Pizza> pizzas = this.persistenceController.getPizzas();
+        List<Producto> productos = this.persistenceController.getPedido();
         try {
             PDFCreator doc = new PDFCreator();
-            doc.generarPDF(factura, pizzas);
+            doc.generarPDF(factura, productos);
         } catch (DocumentException ex) {
             showMessageDialog(null, "ERROR: error al crear factura");
         }
     }
 
     private Boolean validateFactura() {
-        List<Pizza> pizzas = this.persistenceController.getPizzas();
+        List<Producto> productos = this.persistenceController.getPedido();
 
-        if (pizzas.isEmpty()) {
+        if (productos.isEmpty()) {
             return false;
         } else {
             return true;
