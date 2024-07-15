@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "bebidas")
-public class Bebida extends Producto implements Serializable, Calculable {
+public class Bebida extends Producto implements Serializable{
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

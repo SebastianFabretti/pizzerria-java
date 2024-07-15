@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="pizzas")
-public class Pizza extends Producto implements Serializable, Calculable {
+public class Pizza extends Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
