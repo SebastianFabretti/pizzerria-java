@@ -794,7 +794,7 @@ public class tablaMenu extends javax.swing.JFrame {
         int total = 0;
         List<Producto> productos = this.persistenceController.getPedido();
         for (Producto producto : productos) {
-            total += producto.getCantidad() * producto.getPrecio();
+            total += producto.getTotal();
         }
 
         labelTotal.setText("$" + total);

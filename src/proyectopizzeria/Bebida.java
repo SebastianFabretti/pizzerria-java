@@ -12,27 +12,28 @@ import javax.persistence.Table;
  *
  * @author agustin
  */
-
 @Entity
-@Table(name="bebidas")
-public class Bebida extends Producto implements Serializable {
+@Table(name = "bebidas")
+public class Bebida extends Producto implements Serializable, Calculable {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    @Column(name="nombre")
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name="precio")
+    @Column(name = "precio")
     private int precio;
-    @Column(name="cantidad")
+    @Column(name = "cantidad")
     private int cantidad;
-    
-    public Bebida() {}
-    
+
+    public Bebida() {
+    }
+
     public Bebida(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
-   
+
     public int getId() {
         return id;
     }
@@ -60,9 +61,14 @@ public class Bebida extends Producto implements Serializable {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    
-     @Override
+
+    @Override
+    public int getTotal() {
+        return this.cantidad * this.precio;
+    }
+
+    @Override
     public String toString() {
-        return "+" + nombre +" X"+ cantidad + " $" + precio + "c/u " ;
-    } 
+        return "+" + nombre + " X" + cantidad + " $" + precio + "c/u ";
+    }
 }

@@ -4,7 +4,7 @@ package proyectopizzeria;
  *
  * @author agustin
  */
-public class Producto {
+public class Producto implements Calculable {
 
     private String nombre;
     private int precio;
@@ -32,6 +32,11 @@ public class Producto {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    @Override
+    public int getTotal() {
+        return this.cantidad * this.precio;
     }
 
     @Override

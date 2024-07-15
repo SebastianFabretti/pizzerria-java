@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="pizzas")
-public class Pizza extends Producto implements Serializable {
+public class Pizza extends Producto implements Serializable, Calculable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
@@ -65,8 +65,14 @@ public class Pizza extends Producto implements Serializable {
         return this.cantidad;
     }
     
+     @Override
+    public int getTotal() {
+        return this.cantidad * this.precio;
+    }
+    
     @Override
     public String toString() {
         return "+" + nombre +" X"+ cantidad + " $" + precio + "c/u " ;
     }
+
 }
