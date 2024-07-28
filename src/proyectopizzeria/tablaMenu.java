@@ -578,7 +578,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Pizza pizza = this.persistenceController.getPizza(1);
-            pizza.setCantidad(pizza.getCantidad() + 1);
+            pizza.agregar();
             persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
@@ -607,7 +607,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Pizza pizza = this.persistenceController.getPizza(2);
-            pizza.setCantidad(pizza.getCantidad() + 1);
+            pizza.agregar();
             persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
@@ -623,7 +623,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
         try {
             Pizza pizza = this.persistenceController.getPizza(3);
-            pizza.setCantidad(pizza.getCantidad() + 1);
+            pizza.agregar();
             persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
@@ -638,7 +638,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Pizza pizza = this.persistenceController.getPizza(4);
-            pizza.setCantidad(pizza.getCantidad() + 1);
+            pizza.agregar();
             persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
@@ -664,7 +664,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
             if (modelo.getValueAt(selectedRow, 3).equals(Pizza.class)) {
                 Pizza pizza = this.persistenceController.getPizzaByName(nombre);
-                pizza.setCantidad(pizza.getCantidad() - 1);
+                pizza.descontar();
                 try {
                     this.persistenceController.editPizza(pizza);
                 } catch (Exception ex) {
@@ -672,7 +672,7 @@ public class tablaMenu extends javax.swing.JFrame {
                 }
             } else if (modelo.getValueAt(selectedRow, 3).equals(Bebida.class)) {
                 Bebida bebida = this.persistenceController.getBebidaByName(nombre);
-                bebida.setCantidad(bebida.getCantidad() - 1);
+                bebida.descontar();
                 try {
                     this.persistenceController.editBebida(bebida);
                 } catch (Exception ex) {
@@ -692,7 +692,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Pizza pizza = this.persistenceController.getPizza(6);
-            pizza.setCantidad(pizza.getCantidad() + 1);
+            pizza.agregar();
             this.persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
@@ -707,7 +707,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Pizza pizza = this.persistenceController.getPizza(5);
-            pizza.setCantidad(pizza.getCantidad() + 1);
+            pizza.agregar();
             this.persistenceController.editPizza(pizza);
 
         } catch (Exception ex) {
@@ -722,7 +722,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Bebida bebida = this.persistenceController.getBebida(1);
-            bebida.setCantidad(bebida.getCantidad() + 1);
+            bebida.agregar();
             persistenceController.editBebida(bebida);
 
         } catch (Exception ex) {
@@ -736,7 +736,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Bebida bebida = this.persistenceController.getBebida(2);
-            bebida.setCantidad(bebida.getCantidad() + 1);
+            bebida.agregar();
             persistenceController.editBebida(bebida);
 
         } catch (Exception ex) {
@@ -751,7 +751,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Bebida bebida = this.persistenceController.getBebida(3);
-            bebida.setCantidad(bebida.getCantidad() + 1);
+            bebida.agregar();
             persistenceController.editBebida(bebida);
 
         } catch (Exception ex) {
@@ -766,7 +766,7 @@ public class tablaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Bebida bebida = this.persistenceController.getBebida(4);
-            bebida.setCantidad(bebida.getCantidad() + 1);
+            bebida.agregar();
             persistenceController.editBebida(bebida);
 
         } catch (Exception ex) {
@@ -794,7 +794,7 @@ public class tablaMenu extends javax.swing.JFrame {
         int total = 0;
         List<Producto> productos = this.persistenceController.getPedido();
         for (Producto producto : productos) {
-            total += producto.getTotal();
+            total += producto.calcularTotal();
         }
 
         labelTotal.setText("$" + total);

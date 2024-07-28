@@ -66,7 +66,7 @@ public class Pizza extends Producto implements Serializable {
     }
     
      @Override
-    public int getTotal() {
+    public int calcularTotal() {
         return this.cantidad * this.precio;
     }
     

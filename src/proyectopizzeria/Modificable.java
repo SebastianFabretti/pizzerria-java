@@ -8,6 +8,8 @@ package proyectopizzeria;
  *
  * @author agustin
  */
-public interface Calculable {
-    public int calcularTotal();
+public interface Modificable {
+    public void agregar();
+    public void descontar();
+    
 }

@@ -63,7 +63,7 @@ public class Bebida extends Producto implements Serializable{
     }
 
     @Override
-    public int getTotal() {
+    public int calcularTotal() {
         return this.cantidad * this.precio;
     }
 
@@ -71,4 +71,5 @@ public class Bebida extends Producto implements Serializable{
     public String toString() {
         return "+" + nombre + " X" + cantidad + " $" + precio + "c/u ";
     }
+    
 }
