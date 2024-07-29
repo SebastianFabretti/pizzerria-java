@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import proyectopizzeria.persistence.PersistenceController;
@@ -312,7 +313,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Producto", "Precio", "Cantidad", "Class"
+                "Producto", "Precio(c/u)", "Cantidad", "Class"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -576,15 +577,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonMuzzarellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMuzzarellaActionPerformed
         // TODO add your handling code here:
-        try {
-            Pizza pizza = this.persistenceController.getPizza(1);
-            pizza.agregar();
-            persistenceController.editPizza(pizza);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarPizza("Muzzarella");
         this.mapPedido();
     }//GEN-LAST:event_botonMuzzarellaActionPerformed
 
@@ -605,53 +598,30 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
         // TODO add your handling code here:
-        try {
-            Pizza pizza = this.persistenceController.getPizza(2);
-            pizza.agregar();
-            persistenceController.editPizza(pizza);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarPizza("Napolitana");
         this.mapPedido();
-
     }//GEN-LAST:event_botonNapolitanaActionPerformed
 
     private void botonFugazzettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFugazzettaActionPerformed
         // TODO add your handling code here:
 
-        try {
-            Pizza pizza = this.persistenceController.getPizza(3);
-            pizza.agregar();
-            persistenceController.editPizza(pizza);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarPizza("Fugazzetta");
         this.mapPedido();
-
     }//GEN-LAST:event_botonFugazzettaActionPerformed
 
     private void botonEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEspecialActionPerformed
         // TODO add your handling code here:
-        try {
-            Pizza pizza = this.persistenceController.getPizza(4);
-            pizza.agregar();
-            persistenceController.editPizza(pizza);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarPizza("Especial");
         this.mapPedido();
 
     }//GEN-LAST:event_botonEspecialActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
-        borrarPedido();
+        int result = JOptionPane.showConfirmDialog(null, "¿Está seguro que quiere borrar el pedido actual?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            borrarPedido();
+        }
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDescontarActionPerformed
@@ -690,93 +660,63 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
         // TODO add your handling code here:
-        try {
-            Pizza pizza = this.persistenceController.getPizza(6);
-            pizza.agregar();
-            this.persistenceController.editPizza(pizza);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarPizza("Vegana");
         this.mapPedido();
-
     }//GEN-LAST:event_botonVeganaActionPerformed
 
     private void botonAnchoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnchoasActionPerformed
         // TODO add your handling code here:
-        try {
-            Pizza pizza = this.persistenceController.getPizza(5);
-            pizza.agregar();
-            this.persistenceController.editPizza(pizza);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarPizza("Anchoas");
         this.mapPedido();
 
     }//GEN-LAST:event_botonAnchoasActionPerformed
 
     private void botonPepsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPepsiActionPerformed
         // TODO add your handling code here:
-        try {
-            Bebida bebida = this.persistenceController.getBebida(1);
-            bebida.agregar();
-            persistenceController.editBebida(bebida);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarBebida("Pepsi");
         this.mapPedido();
     }//GEN-LAST:event_botonPepsiActionPerformed
 
     private void botonSpriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSpriteActionPerformed
         // TODO add your handling code here:
-        try {
-            Bebida bebida = this.persistenceController.getBebida(2);
-            bebida.agregar();
-            persistenceController.editBebida(bebida);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarBebida("Sprite");
         this.mapPedido();
-
     }//GEN-LAST:event_botonSpriteActionPerformed
 
     private void botonAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAguaActionPerformed
         // TODO add your handling code here:
-        try {
-            Bebida bebida = this.persistenceController.getBebida(3);
-            bebida.agregar();
-            persistenceController.editBebida(bebida);
-
-        } catch (Exception ex) {
-            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        this.agregarBebida("Agua");
         this.mapPedido();
-
     }//GEN-LAST:event_botonAguaActionPerformed
 
     private void botonCervezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCervezaActionPerformed
         // TODO add your handling code here:
+        this.agregarBebida("Cerveza");
+        this.mapPedido();
+    }//GEN-LAST:event_botonCervezaActionPerformed
+
+    private void agregarPizza(String nombre) {
         try {
-            Bebida bebida = this.persistenceController.getBebida(4);
+            Pizza pizza = this.persistenceController.getPizzaByName(nombre);
+            pizza.agregar();
+            this.persistenceController.editPizza(pizza);
+
+        } catch (Exception ex) {
+            Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void agregarBebida(String nombre) {
+        try {
+            Bebida bebida = this.persistenceController.getBebidaByName(nombre);
             bebida.agregar();
             persistenceController.editBebida(bebida);
 
         } catch (Exception ex) {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        this.mapPedido();
-
-    }//GEN-LAST:event_botonCervezaActionPerformed
-
+    }
+    
     private Factura procesarFactura() {
         Factura factura = new Factura();
         int total = calcularTotal();
@@ -819,12 +759,8 @@ public class tablaMenu extends javax.swing.JFrame {
         }
     }
 
-    private Factura getUltimaFactura() {
-        return this.persistenceController.getUltimaFactura();
-    }
-
     private void generarPDF() {
-        Factura factura = getUltimaFactura();
+        Factura factura = this.persistenceController.getUltimaFactura();
         List<Producto> productos = this.persistenceController.getPedido();
         try {
             PDFCreator doc = new PDFCreator();
