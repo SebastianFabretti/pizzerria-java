@@ -127,7 +127,7 @@ public class tablaMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        botonMuzzarella.setText("+");
+        botonMuzzarella.setText("1");
         botonMuzzarella.setAlignmentX(0.5F);
         botonMuzzarella.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonMuzzarella.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -142,7 +142,7 @@ public class tablaMenu extends javax.swing.JFrame {
             }
         });
 
-        botonFugazzetta.setText("+");
+        botonFugazzetta.setText("3");
         botonFugazzetta.setAlignmentX(0.5F);
         botonFugazzetta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonFugazzetta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -156,7 +156,7 @@ public class tablaMenu extends javax.swing.JFrame {
             }
         });
 
-        botonEspecial.setText("+");
+        botonEspecial.setText("4");
         botonEspecial.setAlignmentX(0.5F);
         botonEspecial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonEspecial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -170,7 +170,7 @@ public class tablaMenu extends javax.swing.JFrame {
             }
         });
 
-        botonVegana.setText("+");
+        botonVegana.setText("5");
         botonVegana.setAlignmentX(0.5F);
         botonVegana.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonVegana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -195,7 +195,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
         labelVegana.setText("Vegana");
 
-        botonNapolitana.setText("+");
+        botonNapolitana.setText("2");
         botonNapolitana.setAlignmentX(0.5F);
         botonNapolitana.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonNapolitana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -211,7 +211,7 @@ public class tablaMenu extends javax.swing.JFrame {
 
         labelAnchoas.setText("Anchoas");
 
-        botonAnchoas.setText("+");
+        botonAnchoas.setText("6");
         botonAnchoas.setAlignmentX(0.5F);
         botonAnchoas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonAnchoas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -384,7 +384,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelMuzzarella1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelMuzzarella1.setText("Pepsi");
 
-        botonPepsi.setText("+");
+        botonPepsi.setText("1");
         botonPepsi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonPepsi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPepsi.setMargin(new java.awt.Insets(10, 5, 10, 5));
@@ -400,7 +400,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelMuzzarella2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelMuzzarella2.setText("Sprite");
 
-        botonSprite.setText("+");
+        botonSprite.setText("2");
         botonSprite.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonSprite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonSprite.setMargin(new java.awt.Insets(10, 5, 10, 5));
@@ -416,7 +416,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelMuzzarella3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelMuzzarella3.setText("Agua");
 
-        botonAgua.setText("+");
+        botonAgua.setText("3");
         botonAgua.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonAgua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAgua.setMargin(new java.awt.Insets(10, 5, 10, 5));
@@ -432,7 +432,7 @@ public class tablaMenu extends javax.swing.JFrame {
         labelMuzzarella4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelMuzzarella4.setText("Cerveza");
 
-        botonCerveza.setText("+");
+        botonCerveza.setText("4");
         botonCerveza.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonCerveza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCerveza.setMargin(new java.awt.Insets(10, 5, 10, 5));
@@ -577,7 +577,8 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonMuzzarellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMuzzarellaActionPerformed
         // TODO add your handling code here:
-        this.agregarPizza("Muzzarella");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarPizza(id);
         this.mapPedido();
     }//GEN-LAST:event_botonMuzzarellaActionPerformed
 
@@ -598,20 +599,22 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonNapolitanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNapolitanaActionPerformed
         // TODO add your handling code here:
-        this.agregarPizza("Napolitana");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarPizza(id);
         this.mapPedido();
     }//GEN-LAST:event_botonNapolitanaActionPerformed
 
     private void botonFugazzettaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFugazzettaActionPerformed
         // TODO add your handling code here:
-
-        this.agregarPizza("Fugazzetta");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarPizza(id);
         this.mapPedido();
     }//GEN-LAST:event_botonFugazzettaActionPerformed
 
     private void botonEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEspecialActionPerformed
         // TODO add your handling code here:
-        this.agregarPizza("Especial");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarPizza(id);
         this.mapPedido();
 
     }//GEN-LAST:event_botonEspecialActionPerformed
@@ -660,44 +663,52 @@ public class tablaMenu extends javax.swing.JFrame {
 
     private void botonVeganaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVeganaActionPerformed
         // TODO add your handling code here:
-        this.agregarPizza("Vegana");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarPizza(id);
         this.mapPedido();
     }//GEN-LAST:event_botonVeganaActionPerformed
 
     private void botonAnchoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnchoasActionPerformed
         // TODO add your handling code here:
-        this.agregarPizza("Anchoas");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarPizza(id);
         this.mapPedido();
 
     }//GEN-LAST:event_botonAnchoasActionPerformed
 
     private void botonPepsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPepsiActionPerformed
         // TODO add your handling code here:
-        this.agregarBebida("Pepsi");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarBebida(id);
         this.mapPedido();
     }//GEN-LAST:event_botonPepsiActionPerformed
 
     private void botonSpriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSpriteActionPerformed
         // TODO add your handling code here:
-        this.agregarBebida("Sprite");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarBebida(id);
         this.mapPedido();
     }//GEN-LAST:event_botonSpriteActionPerformed
 
     private void botonAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAguaActionPerformed
         // TODO add your handling code here:
-        this.agregarBebida("Agua");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarBebida(id);
         this.mapPedido();
     }//GEN-LAST:event_botonAguaActionPerformed
 
     private void botonCervezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCervezaActionPerformed
         // TODO add your handling code here:
-        this.agregarBebida("Cerveza");
+        int id = Integer.parseInt(evt.getActionCommand());
+        this.agregarBebida(id);
         this.mapPedido();
     }//GEN-LAST:event_botonCervezaActionPerformed
 
-    private void agregarPizza(String nombre) {
+    
+    
+    private void agregarPizza(int id) {
         try {
-            Pizza pizza = this.persistenceController.getPizzaByName(nombre);
+            Pizza pizza = this.persistenceController.getPizza(id);
             pizza.agregar();
             this.persistenceController.editPizza(pizza);
 
@@ -705,10 +716,10 @@ public class tablaMenu extends javax.swing.JFrame {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void agregarBebida(String nombre) {
+
+    private void agregarBebida(int id) {
         try {
-            Bebida bebida = this.persistenceController.getBebidaByName(nombre);
+            Bebida bebida = this.persistenceController.getBebida(id);
             bebida.agregar();
             persistenceController.editBebida(bebida);
 
@@ -716,7 +727,7 @@ public class tablaMenu extends javax.swing.JFrame {
             Logger.getLogger(tablaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private Factura procesarFactura() {
         Factura factura = new Factura();
         int total = calcularTotal();

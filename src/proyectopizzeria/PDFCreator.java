@@ -46,7 +46,7 @@ public class PDFCreator {
                 producto.setBackgroundColor(BaseColor.CYAN);
                 PdfPCell cant = new PdfPCell(new Phrase("Cantidad"));
                 cant.setBackgroundColor(BaseColor.CYAN);
-                PdfPCell precio = new PdfPCell(new Phrase("Precio($)"));
+                PdfPCell precio = new PdfPCell(new Phrase("Precio c/u($)"));
                 precio.setBackgroundColor(BaseColor.CYAN);
 
                 table.addCell(producto);

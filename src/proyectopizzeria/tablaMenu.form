@@ -176,7 +176,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="botonMuzzarella">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="1"/>
             <Property name="alignmentX" type="float" value="0.5"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -209,7 +209,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonFugazzetta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="3"/>
             <Property name="alignmentX" type="float" value="0.5"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -236,7 +236,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonEspecial">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="4"/>
             <Property name="alignmentX" type="float" value="0.5"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -263,7 +263,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonVegana">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="5"/>
             <Property name="alignmentX" type="float" value="0.5"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -318,7 +318,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonNapolitana">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="2"/>
             <Property name="alignmentX" type="float" value="0.5"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -350,7 +350,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonAnchoas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="6"/>
             <Property name="alignmentX" type="float" value="0.5"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -622,7 +622,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonPepsi">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="1"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
@@ -659,7 +659,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonSprite">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="2"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
@@ -696,7 +696,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonAgua">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="3"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
@@ -733,7 +733,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botonCerveza">
           <Properties>
-            <Property name="text" type="java.lang.String" value="+"/>
+            <Property name="text" type="java.lang.String" value="4"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
