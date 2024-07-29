@@ -27,15 +27,6 @@ public class Pizza extends Producto implements Serializable {
     private int cantidad;
 
     public Pizza() {}
-
-    public Pizza(int cantidad) {
-        this.cantidad = cantidad;
-    }
-    
-    public Pizza(String nombre, int cantidad) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-    }
     
     public int getId() {
         return id;
@@ -65,7 +56,7 @@ public class Pizza extends Producto implements Serializable {
         return this.cantidad;
     }
     
-     @Override
+    @Override
     public int calcularTotal() {
         return this.cantidad * this.precio;
     }

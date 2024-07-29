@@ -26,13 +26,7 @@ public class Bebida extends Producto implements Serializable{
     @Column(name = "cantidad")
     private int cantidad;
 
-    public Bebida() {
-    }
-
-    public Bebida(String nombre, int cantidad) {
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-    }
+    public Bebida() {}
 
     public int getId() {
         return id;
